@@ -29,8 +29,41 @@ class MisCitasPage extends StatelessWidget {
                 title: Text(data['razon'] ?? 'Cita sin razón'),
                 subtitle:
                     Text((data['fecha_hora'] as Timestamp).toDate().toString()),
-
-                  //  trailing: IconButton(icon:
+ trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    // Confirmación de eliminación de cita
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Cancelar Cita'),
+                          content: Text(
+                              '¿Estás seguro de que quieres cancelar esta cita?'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('No'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: Text('Sí, cancelar'),
+                              onPressed: () {
+                                // Eliminar cita
+                                FirebaseFirestore.instance
+                                    .collection('citas')
+                                    .doc(document.id)
+                                    .delete();
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
                
 
 
