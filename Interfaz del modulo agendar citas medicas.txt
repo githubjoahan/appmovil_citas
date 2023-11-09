@@ -1,0 +1,29 @@
+ @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        title: Text("AGENDA DE CITAS MEDICAS"),
+        centerTitle: true,
+      ),
+      drawer: _buildDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 50.0),
+            Image.network(
+              "https://play-lh.googleusercontent.com/A9kmwxo2f7DyIa3c6QCq3-mCQ3MenMPzQ5w8BBmdXs2KJEH1WIchR2ncM9uSACdXinn6", // Insertar el URL del logo aquí
+              height: 150.0,
+              width: 150.0,
+            ),
+            SizedBox(height: 40.0),
+            _buildOptionCard(
+                icon: Icons.calendar_today,
+                title: "Agendar Cita",
+                subtitle: "Le permite agendar citas medicas",
+                onTap: _showAddCitaDialog),
+          ],
+        ),
+      ),
+    );
+  }
