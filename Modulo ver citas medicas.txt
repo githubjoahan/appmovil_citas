@@ -1,0 +1,70 @@
+class MisCitasPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Mis Citas'),
+      ),
+      body: StreamBuilder(
+        stream: FirebaseFirestore.instance
+            .collection('citas')
+            .where('uid', isEqualTo: FirebaseAuth.instance.currentUser?.uid)
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text('Error: ${snapshot.error}'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+          return ListView(
+            children: snapshot.data!.docs.map((DocumentSnapshot document) {
+              Map<String, dynamic> data =
+                  document.data()! as Map<String, dynamic>;
+              return ListTile(
+                title: Text(data['razon'] ?? 'Cita sin razón'),
+                subtitle:
+                    Text((data['fecha_hora'] as Timestamp).toDate().toString()),
+                trailing: IconButton(
+                  icon: Icon(Icons.delete),
+                  onPressed: () {
+                    // Confirmación de eliminación de cita
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Cancelar Cita'),
+                          content: Text(
+                              '¿Estás seguro de que quieres cancelar esta cita?'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: Text('No'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                            TextButton(
+                              child: Text('Sí, cancelar'),
+                              onPressed: () {
+                                // Eliminar cita
+                                FirebaseFirestore.instance
+                                    .collection('citas')
+                                    .doc(document.id)
+                                    .delete();
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                ),
+              );
+            }).toList(),
+          );
+        },
+      ),
+    );
+  }
+}
