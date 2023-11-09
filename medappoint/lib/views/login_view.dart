@@ -61,13 +61,60 @@ class _LoginState extends State<LoginPage> {
   buildLoginPage(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.blue,
-      //777body------------------------------
+      body: Center(
+        child: Card(
+          margin: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.person, size: 100, color: Colors.blue),
+                  SizedBox(height: 20),
+                  Text("Med Appoint",
+                      style:
+                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                  SizedBox(height: 20),
+                  formulario(),
+                  SizedBox(height: 20),
+                  buttonLogin(),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    child: Text("Iniciar con Google"),
+                    onPressed: () async {
+                      UserCredential? user = await signInWithGoogle();
+                      if (user != null) {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => MyHomePage(),
+                        ));
+                      }
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  nuevoAqui(),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
   Widget nuevoAqui() {
     return Row(
-      //mainAxisSize:-----------------------------
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text("¿Aún no estás registrado?"),
+        TextButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CreateUserPage()));
+            },
+            child: Text("Regístrate")),
+      ],
     );
   }
 
@@ -135,13 +182,22 @@ class _LoginState extends State<LoginPage> {
 
   Widget buildEmail() {
     return TextFormField(
-      //------------decoration:
+    decoration: InputDecoration(labelText: "Email"),
+      validator: (val) => val!.isEmpty ? 'Por favor ingresa un email' : null,
+      onSaved: (val) => email = val!,
+
+
     );
   }
 
   Widget buildPassword() {
     return TextFormField(
-      //-------------------decoration:
+      decoration: InputDecoration(labelText: "Contraseña"),
+      obscureText: true,
+      validator: (val) => val!.length < 6
+          ? 'Por favor ingresa una contraseña de al menos 6 caracteres'
+          : null,
+      onSaved: (val) => password = val!,
     );
   }
 }

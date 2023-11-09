@@ -49,16 +49,65 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-         
+          title: Text('Registrar Cita Médica'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
-
-            //children
+            children: <Widget>[
+              ListTile(
+                title: Text('Fecha de la Cita: ${_selectedDate.toLocal()}'
+                    .split(' ')[0]),
+                trailing: Icon(Icons.calendar_today),
+                onTap: () => _selectDate(context),
+              ),
+              ListTile(
+                title:
+                    Text('Hora de la Cita: ${_selectedTime.format(context)}'),
+                trailing: Icon(Icons.access_time),
+                onTap: () => _selectTime(context),
+              ),
+              TextField(
+                controller: _razonController,
+                decoration: InputDecoration(
+                  labelText: 'Razón de la Cita',
+                  icon: Icon(Icons.note),
+                ),
+              ),
+            ],
             
           ),
           
 
-          //actions:
+actions: <Widget>[
+            TextButton(
+              child: Text('Cancelar'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('Agregar'),
+              onPressed: () async {
+                CollectionReference citas =
+                    FirebaseFirestore.instance.collection('citas');
+                DateTime finalDateTime = DateTime(
+                  _selectedDate.year,
+                  _selectedDate.month,
+                  _selectedDate.day,
+                  _selectedTime.hour,
+                  _selectedTime.minute,
+                );
+                // Agrega el 'uid' al documento de la cita
+                await citas.add({
+                  'fecha_hora': finalDateTime,
+                  'razon': _razonController.text,
+                  'uid': FirebaseAuth.instance.currentUser
+                      ?.uid, // Asegúrate de que esto se añada
+                });
+                _razonController.clear();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
 
         );
       },
@@ -68,7 +117,31 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //appBar
+     
+appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.secondary,
+        title: Text("AGENDA DE CITAS MEDICAS"),
+        centerTitle: true,
+      ),
+      drawer: _buildDrawer(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SizedBox(height: 50.0),
+            Image.network(
+              "https://play-lh.googleusercontent.com/A9kmwxo2f7DyIa3c6QCq3-mCQ3MenMPzQ5w8BBmdXs2KJEH1WIchR2ncM9uSACdXinn6", // Insertar el URL del logo aquí
+              height: 150.0,
+              width: 150.0,
+            ),
+            SizedBox(height: 40.0),
+            _buildOptionCard(
+                icon: Icons.calendar_today,
+                title: "Agendar Cita",
+                subtitle: "Le permite agendar citas medicas",
+                onTap: _showAddCitaDialog),
+          ],
+        ),
+      ),
     );
   }
 
