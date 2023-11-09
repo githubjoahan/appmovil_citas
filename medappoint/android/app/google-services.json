@@ -1,0 +1,142 @@
+{
+  "project_info": {
+    "project_number": "206327478811",
+    "project_id": "medlogin-89016",
+    "storage_bucket": "medlogin-89016.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206327478811:android:4c58fa983d1ccf6f0cd6be",
+        "android_client_info": {
+          "package_name": "com.example.integradora_prueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfb2OJ_GZmhOdyYpc1wc0Jjztdzz2xgBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206327478811:android:a0593d9f0a9918a90cd6be",
+        "android_client_info": {
+          "package_name": "com.example.medapoint_integradora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206327478811-ctllaf5dtth9r7uvifvqa9vtpj0off4h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medapoint_integradora",
+            "certificate_hash": "68260678eee80addd7406798c96cd1a7f9dca678"
+          }
+        },
+        {
+          "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfb2OJ_GZmhOdyYpc1wc0Jjztdzz2xgBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206327478811:android:ba1b5500f208c65e0cd6be",
+        "android_client_info": {
+          "package_name": "com.example.medappoint"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206327478811-s0cgntrl20tu1kl16q942tr2gk3i1a4n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medappoint",
+            "certificate_hash": "973e697dcbaa6d9df5ac671352a3d6b768f06773"
+          }
+        },
+        {
+          "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfb2OJ_GZmhOdyYpc1wc0Jjztdzz2xgBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206327478811:android:6008626e9afb2dc50cd6be",
+        "android_client_info": {
+          "package_name": "com.example.prueba_integradora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfb2OJ_GZmhOdyYpc1wc0Jjztdzz2xgBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "206327478811-sbl9e5u5j2r80434tum7f4a9ih9jc7tr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
