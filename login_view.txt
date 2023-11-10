@@ -182,11 +182,9 @@ class _LoginState extends State<LoginPage> {
 
   Widget buildEmail() {
     return TextFormField(
-    decoration: InputDecoration(labelText: "Email"),
+      decoration: InputDecoration(labelText: "Email"),
       validator: (val) => val!.isEmpty ? 'Por favor ingresa un email' : null,
       onSaved: (val) => email = val!,
-
-
     );
   }
 
